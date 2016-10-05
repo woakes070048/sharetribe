@@ -34,7 +34,7 @@ const ListingCardBasic =
         listingURL: 'https://example.com/listing/342iu4',
         price: new Money({
           fractionalAmount: 2147483647, // eslint-disable-line no-magic-numbers
-          code: 'EUR',
+          currency: 'EUR',
         }),
         per: '/ hundred centimeters',
         distance: new Distance({
@@ -66,7 +66,7 @@ const ListingCardNoImage =
         profileURL: '#profile',
         price: new Money({
           fractionalAmount: 1900, // eslint-disable-line no-magic-numbers
-          code: 'EUR',
+          currency: 'EUR',
         }),
         per: '/ day',
         distance: new Distance({
@@ -99,7 +99,7 @@ const ListingCardImageError =
         profileURL: '#profile',
         price: new Money({
           fractionalAmount: 19900, // eslint-disable-line no-magic-numbers
-          code: 'EUR',
+          currency: 'EUR',
         }),
         per: '/ day',
         distance: new Distance({

@@ -17,7 +17,7 @@ const toImage = (data) => {
   }, new ImageRefs());
   return styles;
 };
-const toMoney = ([fractionalAmount, code]) => new Money({ fractionalAmount, code });
+const toMoney = ([fractionalAmount, currency]) => new Money({ fractionalAmount, currency });
 
 // Outside of this file we should only pass UUID references, no need to export
 const UUID = Immutable.Record({ value: '' });
