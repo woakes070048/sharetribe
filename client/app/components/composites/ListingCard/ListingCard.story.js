@@ -4,7 +4,7 @@ import Immutable from 'immutable';
 
 import { storify } from '../../Styleguide/withProps';
 import { formatDistance, formatPrice } from '../../../utils/numbers';
-import ListingModel, { Image, ImageRefs } from '../../../models/ListingModel';
+import ListingModel, { Distance, Image, ImageRefs, Money } from '../../../models/ListingModel';
 
 import ListingCard from './ListingCard';
 import css from './ListingCard.story.css';
@@ -32,11 +32,15 @@ const ListingCardBasic =
           }),
         })]),
         listingURL: 'https://example.com/listing/342iu4',
-        price: 21474836.47,  // eslint-disable-line no-magic-numbers
-        priceUnit: '€',
+        price: new Money({
+          fractionalAmount: 2147483647, // eslint-disable-line no-magic-numbers
+          code: 'EUR',
+        }),
         per: '/ hundred centimeters',
-        distance: 12972,  // eslint-disable-line no-magic-numbers
-        distanceUnit: 'mi',
+        distance: new Distance({
+          value: 12972, // eslint-disable-line no-magic-numbers
+          unit: ':miles',
+        }),
         author: {
           familyName: 'family name',
           givenName: 'given name',
@@ -60,11 +64,15 @@ const ListingCardNoImage =
         listingURL: 'https://example.com/listing/342iu4',
         avatarURL: 'https://placehold.it/40x40',
         profileURL: '#profile',
-        price: 19,  // eslint-disable-line no-magic-numbers
-        priceUnit: '€',
+        price: new Money({
+          fractionalAmount: 1900, // eslint-disable-line no-magic-numbers
+          code: 'EUR',
+        }),
         per: '/ day',
-        distance: 0.67,  // eslint-disable-line no-magic-numbers
-        distanceUnit: 'km',
+        distance: new Distance({
+          value: 0.67, // eslint-disable-line no-magic-numbers
+          unit: ':km',
+        }),
       }),
     },
   );
@@ -89,11 +97,15 @@ const ListingCardImageError =
         listingURL: 'https://example.com/listing/342iu4',
         avatarURL: 'https://placehold.it/40x40',
         profileURL: '#profile',
-        price: 199,  // eslint-disable-line no-magic-numbers
-        priceUnit: '€',
+        price: new Money({
+          fractionalAmount: 19900, // eslint-disable-line no-magic-numbers
+          code: 'EUR',
+        }),
         per: '/ day',
-        distance: 9,  // eslint-disable-line no-magic-numbers
-        distanceUnit: 'km',
+        distance: new Distance({
+          value: 9, // eslint-disable-line no-magic-numbers
+          unit: ':miles',
+        }),
       }),
     },
   );
@@ -106,7 +118,7 @@ const testPrice = function priceTest(card, mountedCard) {
 };
 const testDistance = function priceTest(card, mountedCard) {
   it('Should display formatted distance', () => {
-    expect(mountedCard.text()).to.include(formatDistance(card.props.listing.distance, card.props.listing.distanceUnit));
+    expect(mountedCard.text()).to.include(formatDistance(card.props.listing.distance));
   });
 };
 
